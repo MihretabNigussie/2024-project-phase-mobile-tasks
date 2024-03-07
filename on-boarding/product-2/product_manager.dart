@@ -75,4 +75,8 @@ void main() {
       newDescription: "This is the new biscuit desctiption");
   print(productManager.viewAll());
   print(productManager.viewSingleProduct('biscuit'));
+  productManager.deleteProduct('biscuit');
+  productManager.deleteProduct('shoe');
+  productManager.deleteProduct('car');
+  productManager.viewAll();
 }
