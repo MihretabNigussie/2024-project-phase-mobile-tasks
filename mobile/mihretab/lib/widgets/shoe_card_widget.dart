@@ -30,12 +30,10 @@ class ShoeCard extends StatelessWidget {
           height: 240,
           child: Column(
             children: [
-              Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(32),
-                    ),
-                  ),
+              ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16)),
                   child: Image.asset(
                     width: double.infinity,
                     height: 160,

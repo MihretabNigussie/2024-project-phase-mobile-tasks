@@ -6,24 +6,6 @@ import '../widgets/widgets.dart';
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
 
-  NumberCard? cardGenerator() {
-    for (int i = 39; i < 50; i++) {
-      if (i == 41) {
-        return NumberCard(
-          color: ColorConstants.primaryColor,
-          number: '$i',
-          textColor: ColorConstants.backgroundColor,
-        );
-      }
-      return NumberCard(
-        color: ColorConstants.backgroundColor,
-        number: '$i',
-        textColor: ColorConstants.textColor,
-      );
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -126,8 +108,17 @@ class DetailsPage extends StatelessWidget {
                       width: double.infinity, // Set the desired height
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
+                        itemCount: 12,
                         itemBuilder: (context, index) {
-                          return cardGenerator();
+                          return NumberCard(
+                            color: index == 2
+                                ? ColorConstants.primaryColor
+                                : ColorConstants.backgroundColor,
+                            number: (39 + index).toString(),
+                            textColor: index == 2
+                                ? ColorConstants.backgroundColor
+                                : ColorConstants.darkTextColor,
+                          );
                         },
                       ),
                     ),
