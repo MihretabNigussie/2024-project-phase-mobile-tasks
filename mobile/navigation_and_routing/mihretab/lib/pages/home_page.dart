@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mihretab/models/shoe_model.dart';
 import '../core/constants/constants.dart';
-import '../core/routing/route_config.dart';
 import '../widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,13 +119,24 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return const ShoeCard();
-                    },
-                  ),
-                ),
+                    child: ShoeModel.shoes.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: ShoeModel.shoes.length,
+                            itemBuilder: (context, index) {
+                              final ShoeModel shoe = ShoeModel.shoes[index];
+                              return ShoeCard(shoeModel: shoe);
+                            },
+                          )
+                        : const Center(
+                            child: Text(
+                              'No Product is Found!',
+                              style: TextStyle(
+                                color: ColorConstants.textColor,
+                                fontSize: FontSizeConstants.fontSizeExtraLarge,
+                                fontWeight: FontWeightConstants.primaryFontBold,
+                              ),
+                            ),
+                          )),
               ],
             ),
           ),
@@ -128,7 +145,7 @@ class HomePage extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
-            router.push('/addorupdatepage');
+            context.push('/addorupdatepage');
           },
           child: Icon(
             Icons.add_rounded,
