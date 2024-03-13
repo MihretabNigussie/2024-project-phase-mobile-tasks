@@ -18,7 +18,6 @@ class _DetailsPageState extends State<DetailsPage> {
     setState(() {
       widget.shoe.deleteShoe(widget.shoe.getIndex(widget.shoe));
     });
-    print('Shoe deleted');
     context.pop();
   }
 
@@ -158,7 +157,8 @@ class _DetailsPageState extends State<DetailsPage> {
                           width: 152,
                         ),
                         ButtonWidget(
-                          onTap: () => {},
+                          onTap: () =>
+                              {context.push('/update/${widget.shoe.name}')},
                           text: 'UPDATE',
                           isOkay: true,
                           width: 152,
