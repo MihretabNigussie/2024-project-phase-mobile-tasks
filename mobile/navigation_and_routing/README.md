@@ -1,16 +1,12 @@
-# mihretab
+# navigation and routing
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+This app has 3 files. 
+The first one to add products:- here you can fill image url, name, catagory, price, rating of the product and add them on the products list
 
-A few resources to get you started if this is your first Flutter project:
+Second: We have list of products page. It basically lists all the products that are added before. If no products found in the model, It will show "No Products" message.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The last page: Product detail page where smn can see the details about that product after he/she chooses one. The users can also delete or update that specific product in this page.
+
