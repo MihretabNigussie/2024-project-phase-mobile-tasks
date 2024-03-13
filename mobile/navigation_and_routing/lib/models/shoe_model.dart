@@ -20,9 +20,10 @@ class ShoeModel {
     shoes.add(shoe);
   }
 
-  void updateShoe(int index, ShoeModel shoe) {
-    shoes[index] = shoe;
-  }
+  // void updateShoe(ShoeModel beforeShoe, ShoeModel shoe) {
+    
+  //   shoes[index] = shoe;
+  // }
 
   int getIndex(ShoeModel shoe) {
     return shoes.indexOf(shoe);

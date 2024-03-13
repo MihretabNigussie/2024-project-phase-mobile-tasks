@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mihretab/core/routing/route_config.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mihretab/models/shoe_model.dart';
-
 import '../core/constants/constants.dart';
 import '../widgets/widgets.dart';
 
-class AddOrUpdatePage extends StatefulWidget {
-  const AddOrUpdatePage({Key? key}) : super(key: key);
+class UpdatePage extends StatefulWidget {
+  final ShoeModel shoe;
+  const UpdatePage({Key? key, required this.shoe}) : super(key: key);
 
   @override
-  State<AddOrUpdatePage> createState() => _AddOrUpdatePageState();
+  State<UpdatePage> createState() => _UpdatePageState();
 }
 
-class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
+class _UpdatePageState extends State<UpdatePage> {
   late TextEditingController _nameController;
   late TextEditingController _priceController;
   late TextEditingController _descriptionController;
@@ -23,12 +23,15 @@ class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController();
-    _priceController = TextEditingController();
-    _descriptionController = TextEditingController();
-    _ratingController = TextEditingController();
-    _categoryController = TextEditingController();
-    _imageURLController = TextEditingController();
+    _nameController = TextEditingController(text: widget.shoe.name);
+    _priceController =
+        TextEditingController(text: widget.shoe.price.toString());
+    _descriptionController =
+        TextEditingController(text: widget.shoe.description);
+    _ratingController =
+        TextEditingController(text: widget.shoe.rating.toString());
+    _categoryController = TextEditingController(text: widget.shoe.category);
+    _imageURLController = TextEditingController(text: widget.shoe.imageURL);
   }
 
   @override
@@ -42,12 +45,13 @@ class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
     super.dispose();
   }
 
-  void addToDatabaseHandler(ShoeModel shoeModel) {
+  void updateProductHandler(ShoeModel shoeModel) {
     setState(() {
-      shoeModel.addShoe(shoeModel);
+      int index = widget.shoe.getIndex(widget.shoe);
+      ShoeModel.shoes[index] = shoeModel;
     });
 
-    router.pop();
+    context.pop();
   }
 
   @override
@@ -65,7 +69,7 @@ class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
                   BackButtonWidget(),
                   SizedBox(width: 90),
                   Text(
-                    'Add Product',
+                    'Update Product',
                     style: TextStyle(
                       color: ColorConstants.textColor,
                       fontSize: FontSizeConstants.fontSizeNormal,
@@ -161,7 +165,7 @@ class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
               const SizedBox(height: 20),
               ButtonWidget(
                 onTap: () {
-                  final shoeModel = ShoeModel(
+                  ShoeModel shoeModel = ShoeModel(
                     name: _nameController.text,
                     price: double.parse(_priceController.text),
                     rating: double.parse(_ratingController.text),
@@ -169,15 +173,15 @@ class _AddOrUpdatePageState extends State<AddOrUpdatePage> {
                     category: _categoryController.text,
                     imageURL: _imageURLController.text,
                   );
-                  addToDatabaseHandler(shoeModel);
+                  updateProductHandler(shoeModel);
                 },
-                text: 'ADD',
+                text: 'Update',
                 isOkay: true,
                 width: double.infinity,
               ),
               const SizedBox(height: 10),
               ButtonWidget(
-                onTap: () => router.pop(),
+                onTap: () => context.pop(),
                 text: 'CANCEL',
                 isOkay: false,
                 width: double.infinity,

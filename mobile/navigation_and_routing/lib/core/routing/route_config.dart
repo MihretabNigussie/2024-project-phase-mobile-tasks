@@ -24,9 +24,18 @@ final GoRouter router = GoRouter(
         }),
     GoRoute(
         path: '/addorupdatepage',
-        name: RouteConstants.addOrUpdatePageRouteName,
+        name: RouteConstants.addPageRouteName,
         builder: (BuildContext context, GoRouterState state) {
-          return const AddOrUpdatePage();
+          return const AddPage();
+        }),
+    GoRoute(
+        path: '/update/:shoe',
+        name: RouteConstants.updatePageRouteName,
+        builder: (BuildContext context, GoRouterState state) {
+          final String? shoe = state.pathParameters['shoe'];
+
+          final ShoeModel myShoe = ShoeModel.getShoe(shoe);
+          return UpdatePage(shoe: myShoe);
         }),
   ],
 );
