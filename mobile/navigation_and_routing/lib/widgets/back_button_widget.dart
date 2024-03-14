@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../core/constants/constants.dart';
 
@@ -24,7 +25,7 @@ class BackButtonWidget extends StatelessWidget {
             color: ColorConstants.primaryColor,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mihretab/core/routing/route_config.dart';
 import 'package:mihretab/models/shoe_model.dart';
+import 'package:mihretab/pages/pages.dart';
 import '../core/constants/constants.dart';
 import '../widgets/widgets.dart';
 
@@ -18,11 +19,13 @@ class _DetailsPageState extends State<DetailsPage> {
     setState(() {
       widget.shoe.deleteShoe(widget.shoe.getIndex(widget.shoe));
     });
-    context.pop();
+    router.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.shoe.name);
+    print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstants.backgroundColor,
@@ -157,8 +160,9 @@ class _DetailsPageState extends State<DetailsPage> {
                           width: 152,
                         ),
                         ButtonWidget(
-                          onTap: () =>
-                              {context.push('/update/${widget.shoe.name}')},
+                          onTap: () {
+                            router.push('/update/${widget.shoe.name}');
+                          },
                           text: 'UPDATE',
                           isOkay: true,
                           width: 152,

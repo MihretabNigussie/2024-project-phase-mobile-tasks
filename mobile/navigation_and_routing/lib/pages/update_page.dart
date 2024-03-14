@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mihretab/core/routing/route_config.dart';
 import 'package:mihretab/models/shoe_model.dart';
 import '../core/constants/constants.dart';
 import '../widgets/widgets.dart';
@@ -45,14 +45,12 @@ class _UpdatePageState extends State<UpdatePage> {
     super.dispose();
   }
 
-  void updateProductHandler(ShoeModel shoeModel) {
-    setState(() {
-      int index = widget.shoe.getIndex(widget.shoe);
-      ShoeModel.shoes[index] = shoeModel;
-    });
-
-    context.pop();
-  }
+  // void updateProductHandler(ShoeModel shoeModel) {
+  //   setState(() {
+  //     shoeModel.updateShoe(widget.shoe, shoeModel);
+  //   });
+  //   router.pop(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +171,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     category: _categoryController.text,
                     imageURL: _imageURLController.text,
                   );
-                  updateProductHandler(shoeModel);
+                  // updateProductHandler(shoeModel);
                 },
                 text: 'Update',
                 isOkay: true,
@@ -181,7 +179,7 @@ class _UpdatePageState extends State<UpdatePage> {
               ),
               const SizedBox(height: 10),
               ButtonWidget(
-                onTap: () => context.pop(),
+                onTap: () => router.pop(context),
                 text: 'CANCEL',
                 isOkay: false,
                 width: double.infinity,
