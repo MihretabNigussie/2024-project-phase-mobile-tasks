@@ -45,14 +45,12 @@ class _UpdatePageState extends State<UpdatePage> {
     super.dispose();
   }
 
-  void updateProductHandler(ShoeModel shoeModel) {
-    setState(() {
-      int index = widget.shoe.getIndex(widget.shoe);
-      ShoeModel.shoes[index] = shoeModel;
-    });
-
-    router.pop(context);
-  }
+  // void updateProductHandler(ShoeModel shoeModel) {
+  //   setState(() {
+  //     shoeModel.updateShoe(widget.shoe, shoeModel);
+  //   });
+  //   router.pop(context);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +171,7 @@ class _UpdatePageState extends State<UpdatePage> {
                     category: _categoryController.text,
                     imageURL: _imageURLController.text,
                   );
-                  updateProductHandler(shoeModel);
+                  // updateProductHandler(shoeModel);
                 },
                 text: 'Update',
                 isOkay: true,
