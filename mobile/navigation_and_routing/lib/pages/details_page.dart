@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mihretab/core/routing/route_config.dart';
 import 'package:mihretab/models/shoe_model.dart';
 import '../core/constants/constants.dart';
 import '../widgets/widgets.dart';
@@ -18,7 +18,7 @@ class _DetailsPageState extends State<DetailsPage> {
     setState(() {
       widget.shoe.deleteShoe(widget.shoe.getIndex(widget.shoe));
     });
-    context.pop();
+    router.pop(context);
   }
 
   @override
@@ -158,7 +158,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                         ButtonWidget(
                           onTap: () =>
-                              {context.push('/update/${widget.shoe.name}')},
+                              {router.push('/update/${widget.shoe.name}')},
                           text: 'UPDATE',
                           isOkay: true,
                           width: 152,

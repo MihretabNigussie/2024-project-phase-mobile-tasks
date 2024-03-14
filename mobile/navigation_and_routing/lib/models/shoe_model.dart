@@ -21,7 +21,7 @@ class ShoeModel {
   }
 
   // void updateShoe(ShoeModel beforeShoe, ShoeModel shoe) {
-    
+
   //   shoes[index] = shoe;
   // }
 

@@ -47,7 +47,7 @@ class _AddPageState extends State<AddPage> {
       shoeModel.addShoe(shoeModel);
     });
 
-    router.pop();
+    router.pop(context);
   }
 
   @override
@@ -177,7 +177,7 @@ class _AddPageState extends State<AddPage> {
               ),
               const SizedBox(height: 10),
               ButtonWidget(
-                onTap: () => router.pop(),
+                onTap: () => router.pop(context),
                 text: 'CANCEL',
                 isOkay: false,
                 width: double.infinity,

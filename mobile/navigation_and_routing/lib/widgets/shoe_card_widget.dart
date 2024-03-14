@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mihretab/core/constants/constants.dart';
 import 'package:mihretab/core/constants/theme_constants.dart';
+import 'package:mihretab/core/routing/route_config.dart';
 import 'package:mihretab/models/shoe_model.dart';
 
 class ShoeCard extends StatelessWidget {
@@ -14,7 +14,7 @@ class ShoeCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16.0),
       child: GestureDetector(
         onTap: () {
-          context.push('/details/${shoeModel.name}');
+          router.push('/details/${shoeModel.name}');
         },
         child: Container(
           decoration: BoxDecoration(
