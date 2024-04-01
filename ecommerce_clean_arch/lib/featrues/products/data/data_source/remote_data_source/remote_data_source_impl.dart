@@ -6,8 +6,10 @@ import 'package:http/http.dart' as http;
 
 import 'package:ecommerce_clean_arch/featrues/products/data/data_source/remote_data_source/remote_data_source.dart';
 
-class RemoteLocalDataSoruceImpl implements RemoteDataSource {
-  late final http.Client client;
+class RemoteDataSoruceImpl implements RemoteDataSource {
+  final http.Client client;
+
+  RemoteDataSoruceImpl({required this.client});
 
   @override
   Future<String> addProduct(
@@ -79,6 +81,26 @@ class RemoteLocalDataSoruceImpl implements RemoteDataSource {
     );
     if (response.statusCode == 200) {
       return response.body;
+    } else {
+      throw ServerException(message: response.body.toString());
+    }
+  }
+
+  @override
+  Future<List<ProductModel>> searchProduct(String query) async {
+    Map<String, dynamic> queryParameters = {'title': query};
+    final response = await client.get(
+      Uri.parse('https://products-api-5a5n.onrender.com/api/v1/products')
+          .replace(queryParameters: queryParameters),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = jsonDecode(response.body)['products'];
+      print(jsonData);
+      return jsonData.map((data) => ProductModel.fromJson(data)).toList();
     } else {
       throw ServerException(message: response.body.toString());
     }
