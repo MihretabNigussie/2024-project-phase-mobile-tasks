@@ -5,6 +5,7 @@ import 'package:ecommerce_clean_arch/featrues/products/domain/entities/product_e
 abstract class ProductRepository {
   Future<Either<Failure, List<ProductEntity>>> getProducts();
   Future<Either<Failure, ProductEntity>> getProduct(String id);
+  Future<Either<Failure, List<ProductEntity>>> searchProduct(String query);
   Future<Either<Failure, String>> addProduct(
       String name, String description, double price);
   Future<Either<Failure, String>> updateProduct(
